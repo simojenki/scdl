@@ -485,7 +485,7 @@ def download_original_file(track, title):
         new = shlex.quote(newfilename)
         old = shlex.quote(filename)
         logger.debug("ffmpeg -i {0} {1} -loglevel fatal".format(old, new))
-        subprocess.call("ffmpeg -i {0} {1} -loglevel fatal".format(old, new))
+        subprocess.call(["ffmpeg", "-i", old, new, "-loglevel", "fatal"])
         os.remove(filename)
         filename = newfilename
 
@@ -516,10 +516,7 @@ def download_hls_mp3(track, title):
     # Get the requests stream
     url = get_track_m3u8(track)
     res = subprocess.call(
-        "ffmpeg -i {0} -c copy {1} -loglevel fatal".format(
-            '"' + url + '"',
-            '"' + filename + '"'
-        )
+				["ffmpeg", "-i", '"' + url + '"', "-c", "copy", '"' + filename + '"', "-loglevel, "fatal"]
     )
     return filename
 
