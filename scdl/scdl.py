@@ -516,7 +516,7 @@ def download_hls_mp3(track, title):
     # Get the requests stream
     url = get_track_m3u8(track)
     res = subprocess.call(
-				["ffmpeg", "-i", '"' + url + '"', "-c", "copy", '"' + filename + '"', "-loglevel, "fatal"]
+				["ffmpeg", "-i", '"' + url + '"', "-c", "copy", '"' + filename + '"', "-loglevel", "fatal"]
     )
     return filename
 
